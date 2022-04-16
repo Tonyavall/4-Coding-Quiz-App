@@ -1,15 +1,15 @@
-.container {
+#container {
     display: flex;
     justify-content: center;
 }
 
-.container section {
+section {
     display: flex;
     flex-direction: column;
     margin: 10px;
 }
 
-.container .hidden {
+.hidden {
     display: none;
 }
 

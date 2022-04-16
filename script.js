@@ -1,19 +1,38 @@
-let section = document.querySelectorAll("section");
-let button = document.querySelectorAll("button");
+let section = document.querySelectorAll("section")
+let button = document.getElementById("btn");
+let container = document.getElementById("container");
+
+console.log(section)
 
 let time = 0;
 let correct = 0;
-let index= 1;
+let index = 1;
 
-button.addEventListener("click", function() {
-    index++;
-    // If the variable index is equal to the section attribute index remove class hidden 
-    if (index == section.dataset.index) {
-        section.removeAttribute("Hidden")
+// Function that iterates over section nodeList and returns the current node the user is on.
+function posListener() {
+    for (var i = 0; i < section.length; i++) {
+        if (section[i].dataset.question.match(index)) {
+            return section[i];
+        }
     }
-    // If the variable index is not equal to section attribute index add class hidden
-    if (index !== section.dataset.index) {
-        section.setAttribute("class", "hidden");
+};
+
+// Check to see if the returned section node data-question attribute value is the same as index number
+// console.log(posListener());
+
+// Event delegation. https://davidwalsh.name/event-delegate
+container.addEventListener("click", function(e) {
+    if (e.target && e.target.matches("#btn")) {
+        index++;
+        // Iterating over all section nodes
+        // If the node is not current node returned by posListener, set attribute class hidden
+        for (var i = 0; i < section.length; i++) {
+            if (section[i] !== posListener()) {
+                section[i].setAttribute("class", "hidden");
+            }
+        }
+
+        // Removes class hidden from current element node
+        posListener().removeAttribute("class");
     }
 });
-

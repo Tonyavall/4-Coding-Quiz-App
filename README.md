@@ -21,6 +21,7 @@ Approach: Html orriented. Could do javascript
 1. 10 Different Questions via html
     a. Header
     b. 4 Buttons with boolean attribute 'correct'
+
 2. 10 questions are hidden via carousell -> no backwards navigation
     a. index 1-10 -> data-index attribute 1-10 values
     b. on click index++ -> if index > 10 return insert initials page
