@@ -1,5 +1,5 @@
 let section = document.querySelectorAll("section")
-let button = document.getElementById("btn");
+// let button = document.querySelectorAll("#btn");
 let container = document.getElementById("container");
 let timer = document.getElementById("timer")
 let submitPage = document.getElementById("submit-page")
@@ -9,6 +9,9 @@ let initialsDiv = document.getElementById("initials-msg")
 // Check to see if section is a nodeList
 // console.log(section)
 
+// Check to see that button is a nodeList of all the buttons
+// console.log(button)
+
 let time = 60;
 let score = 0;
 let index = 0;
@@ -17,8 +20,6 @@ let index = 0;
 let scores = {
 
 };
-
-
 
 // Function that iterates over section nodeList and returns the current node the user is on.
 // The current node is always the index variable value and not the other way around
@@ -107,7 +108,25 @@ container.addEventListener("click", function(targ) {
 
                     posListener();
                 }
-            }, 10);
+
+                if (index > 10) {
+                    clearInterval(timerFunc);
+                }
+            }, 1000);
+        };
+
+        // Score keeper - Fundamental flaw = using classes makes it VERY easy to cheat lol~ Could use dataset values later and have serverside requests?
+        // If the button also has class correct
+        if (targ.target && targ.target.matches(".correct")) {
+            score++;
+            currentIndex().lastChild.textContent = "Correct!";
+            console.log("correct")
+        };
+        // If the button also has class incorrect
+        if (targ.target && targ.target.matches(".incorrect")) {
+            time -= 5;
+            currentIndex().lastChild.textContent = "Incorrect!";
+            console.log("incorrect")
         };
 
         // If the button also has the class "submit-btn"
@@ -133,7 +152,6 @@ container.addEventListener("click", function(targ) {
                 renderScores();
             }
         };
-
 
         // If the button also has the class "back"
         if (targ.target && targ.target.matches(".back")) {
@@ -165,5 +183,8 @@ container.addEventListener("click", function(targ) {
         
         // Towards the end because I want other conditions to be met first
         posListener();
+
     }
 });
+
+// TODO- Correct/Incorrect questions. If incorrect, -5 seconds from time
