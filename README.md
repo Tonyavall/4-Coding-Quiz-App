@@ -18,10 +18,11 @@ Logic Map:
 
 Approach: Html orriented. Could do javascript
 
+Concept Abstract: Default class 'hidden' has css property display: none; for quiz container. A position listener function grabs current index. Whatever index is not current index is given class hidden and the current index will have class hidden removed.
+
 1. 10 Different Questions via html
     a. Header
     b. 4 Buttons with boolean attribute 'correct'
-
 2. 10 questions are hidden via carousell -> no backwards navigation
     a. index 1-10 -> data-index attribute 1-10 values
     b. on click index++ -> if index > 10 return insert initials page
@@ -34,4 +35,12 @@ Global Variables:
 1. time
 2. correct
 4. index
+
+Project Notes:
+
+1. I ended up making 2 functions that are responsible for the showing and hiding of current node and noncurrent node.
+    a. currentIndex(); grabs current node
+    b. posListener(); associates index variable with node dataset attribute index value.
+    c. If I want to change the index variable value I can then just use the posListener to change current node
+
 

@@ -15,8 +15,10 @@ let index = 0;
 
 // Object that stores user initial and scores. Saved to and grabbed from local storage later.
 let scores = {
-    TV: 0,
+
 };
+
+renderScores();
 
 // Function that iterates over section nodeList and returns the current node the user is on.
 // The current node is always the index variable value and not the other way around
@@ -25,7 +27,7 @@ function currentIndex() {
         // if the current node data-question value in the for loop matches index value
         if (section[i].dataset.index === index.toString()) {
             return section[i];
-        }
+        } 
     }
 };
 
@@ -54,6 +56,7 @@ function renderScores() {
     initialKeys = Object.keys(scoresStored);
     scoreValues = Object.values(scoresStored);
 
+    // For loop to create score pair string value, create paragraph element, and append it to the scoreboard div
     for (var i = 0; i < initialKeys.length; i++) {
         // For every loop, since initialKeys.length and scoreValues.length is the same, we are able to pair the strings.
         scorePair = initialKeys[i] + ": " + scoreValues[i].toString();
@@ -65,8 +68,6 @@ function renderScores() {
         scoreboard.appendChild(scorePara);
     }
 };
-
-renderScores();
 
 // Event delegation. Delegates click function for all buttons available. https://davidwalsh.name/event-delegate
 container.addEventListener("click", function(targ) {
@@ -118,27 +119,39 @@ container.addEventListener("click", function(targ) {
                 // The user's initials input and score are stored into the scores object
                 scores[initials] = score;
 
-                // The scores object is stored into the local storage as a string
-                localStorage.setItem(JSON.stringify(scores))
+                // The scores object is stored into the local strage as a string
+                localStorage.setItem("scores", JSON.stringify(scores));
 
                 renderScores();
             }
         };
 
 
-        // // If the button also has the class "back"
-        // if (targ.target && targ.target.matches(".back")) {
+        // If the button also has the class "back"
+        if (targ.target && targ.target.matches(".back")) {
             
-        //     // Set time back to 60 seconds and score back to 0
-        //     time = 60;
-        //     score = 0;
+            // Set time back to 60 seconds and score back to 0
+            time = 60;
+            timer.textContent = "60";
+            score = 0;
 
-        // }
+            // Set index back to 0 and go back to start quiz
+            index = 0;
+            posListener();
+        };
 
-        // // If the button also has the class "clear"
-        // if (targ.target && targ.target.matches(".clear")) {
-            
-        // }
+        // If the button also has the class "clear"
+        if (targ.target && targ.target.matches(".clear")) {
+            // Counter index++
+            index--;
+
+            // Remove stringified object 'scores' from local storage
+            localStorage.removeItem("scores")
+            // Delete all children from scoreboard element. https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+            while (scoreboard.firstChild) {
+                scoreboard.removeChild(scoreboard.firstChild)
+            };
+        }
         
         // Towards the end because I want other conditions to be met first
         posListener();
