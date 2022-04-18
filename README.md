@@ -26,6 +26,8 @@ Approach: Html orriented. Could do javascript
     a. index 1-10 -> data-index attribute 1-10 values
     b. on click index++ -> if index > 10 return insert initials page
 3. Default css class = hidden
+4. When done with base functions, could add question randomizer and/or answer randomizer.
+    a. Based on data-question attribute manipulation
 
 Global Variables:
 

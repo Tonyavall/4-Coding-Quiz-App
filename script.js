@@ -1,38 +1,96 @@
 let section = document.querySelectorAll("section")
 let button = document.getElementById("btn");
 let container = document.getElementById("container");
+let timer = document.getElementById("timer")
+let submitPage = document.getElementById("submit-page")
+let highScores = document.getElementById("highscores")
 
-console.log(section)
+// Check to see if section is a nodeList
+// console.log(section)
 
-let time = 0;
+let time = 60;
 let correct = 0;
-let index = 1;
+let index = 0;
 
 // Function that iterates over section nodeList and returns the current node the user is on.
-function posListener() {
+// The current node is always the index variable value and not the other way around
+function currentIndex() {
     for (var i = 0; i < section.length; i++) {
-        if (section[i].dataset.question.match(index)) {
+        // if the current node data-question value in the for loop matches index value
+        if (section[i].dataset.index === index.toString()) {
             return section[i];
         }
     }
 };
 
-// Check to see if the returned section node data-question attribute value is the same as index number
-// console.log(posListener());
+// Check to see if the current index node is returned
+// console.log(currentIndex())
 
-// Event delegation. https://davidwalsh.name/event-delegate
-container.addEventListener("click", function(e) {
-    if (e.target && e.target.matches("#btn")) {
-        index++;
-        // Iterating over all section nodes
-        // If the node is not current node returned by posListener, set attribute class hidden
+// Function that hides all other noncurrent nodes and shows current node
+function posListener() {
+        // Loops over all nodes and adds class hidden
         for (var i = 0; i < section.length; i++) {
-            if (section[i] !== posListener()) {
-                section[i].setAttribute("class", "hidden");
-            }
+            section[i].setAttribute("class", "hidden");
+        };
+        // Remove class hidden from current index
+        currentIndex().removeAttribute("class");
+};
+
+// Event delegation. Delegates click function for all buttons available. https://davidwalsh.name/event-delegate
+container.addEventListener("click", function(targ) {
+    // If the targ (clicked element) is a button
+    if (targ.target && targ.target.matches("#btn")) {
+        index++;
+        posListener();
+
+        // If the button also has the class "start"
+        if (targ.target && targ.target.matches(".start")) {
+
+            // Timer function. Timer element on the top of the page that is appended based on time variable
+            // Timer needs if less than 0 condition that doesn't allow it to go less than 0 and exits quiz when hits 0
+            let timerFunc = setInterval(function() {
+                time--;
+                // Makes the value of time variable into a string and assigns it to timeHolder
+                timeHolder = time.toString();
+                // Sets text of timer equal to timeHolder value
+                timer.textContent = timeHolder;
+
+                // Console Log the timeHolder value to see if it's a string
+                // console.log(timeHolder)
+
+                if (time < 1) {
+                    // Clears timer for timerFunc specifically
+                    clearInterval(timerFunc);
+
+                    // Turning submit page index string value into a number and setting it equal to index
+                    index = parseInt(submitPage.dataset.index);
+
+                    posListener();
+                }
+            }, 10);
         }
 
-        // Removes class hidden from current element node
-        posListener().removeAttribute("class");
+        // If the button also has the class "submit-btn"
+        if (targ.target && targ.target.matches(".submit-btn")) {
+
+        }
+
+
+        // // If the button also has the class "back"
+        // if (targ.target && targ.target.matches(".back")) {
+            
+        //     // Set time back to 60 seconds
+        //     time = 60;
+
+        // }
+
+        // // If the button also has the class "clear"
+        // if (targ.target && targ.target.matches(".clear")) {
+            
+        // }
+        
+
+        // // Correct variable counter
     }
 });
+
