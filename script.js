@@ -18,7 +18,7 @@ let scores = {
 
 };
 
-renderScores();
+
 
 // Function that iterates over section nodeList and returns the current node the user is on.
 // The current node is always the index variable value and not the other way around
@@ -46,9 +46,17 @@ function posListener() {
 
 // Function that grabs scores from local storage and renders it to scoreboard
 function renderScores() {
+    // Bug Fix - Score duplication. We just clear the board first.
+    while (scoreboard.firstChild) {
+        scoreboard.removeChild(scoreboard.firstChild)
+    };
+
     // Stringified scores object is parsed back into an object
     let scoresStored = JSON.parse(localStorage.getItem("scores"));
 
+    if (scoresStored === undefined || scoresStored === null) {
+        return;
+    }
     // Check to see if initials is parsed and turned back into an object
     // console.log(initials);
 
@@ -145,8 +153,10 @@ container.addEventListener("click", function(targ) {
             // Counter index++
             index--;
 
-            // Remove stringified object 'scores' from local storage
+            // Remove stringified object 'scores' from local storage and clears object
             localStorage.removeItem("scores")
+            scores = {};
+
             // Delete all children from scoreboard element. https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
             while (scoreboard.firstChild) {
                 scoreboard.removeChild(scoreboard.firstChild)
@@ -157,4 +167,3 @@ container.addEventListener("click", function(targ) {
         posListener();
     }
 });
-
