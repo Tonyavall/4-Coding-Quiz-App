@@ -12,7 +12,7 @@
             60
         </p>
     </aside>
-    
+
     <article id="container">
         <section data-index="0">
             <h1>
@@ -145,13 +145,18 @@
                 Hello
             </h1>
 
-            <button class="submit-btn" id="btn">Submit</button>
+            <form method="post">
+                <label for="initials">Enter Initials</label>
+                <input type="text" name="initials" id="initials" placeholder="TV"/>
+                <div id="initials-msg"></div>
+                <button class="submit-btn" id="btn">Submit</button>
+            </form>
         </section>
 
-        <section id="highscores" class="hidden" data-index="12">
-            <h1>
-                Hello
-            </h1>
+        <section class="hidden" data-index="12">
+            <div id="scoreboard">
+
+            </div>>
 
             <button class="back" id="btn">Go Back</button>
             <button class="clear" id="btn">Clear Scores</button>

@@ -3,14 +3,20 @@ let button = document.getElementById("btn");
 let container = document.getElementById("container");
 let timer = document.getElementById("timer")
 let submitPage = document.getElementById("submit-page")
-let highScores = document.getElementById("highscores")
+let scoreboard = document.getElementById("scoreboard")
+let initialsDiv = document.getElementById("initials-msg")
 
 // Check to see if section is a nodeList
 // console.log(section)
 
 let time = 60;
-let correct = 0;
+let score = 0;
 let index = 0;
+
+// Object that stores user initial and scores. Saved to and grabbed from local storage later.
+let scoreObject = {
+
+}
 
 // Function that iterates over section nodeList and returns the current node the user is on.
 // The current node is always the index variable value and not the other way around
@@ -36,12 +42,18 @@ function posListener() {
         currentIndex().removeAttribute("class");
 };
 
+// Function that grabs scores from local storage and renders it to scoreboard
+function renderScores() {
+    let initials = localStorage.getItem("initials")
+
+
+}
+
 // Event delegation. Delegates click function for all buttons available. https://davidwalsh.name/event-delegate
 container.addEventListener("click", function(targ) {
     // If the targ (clicked element) is a button
     if (targ.target && targ.target.matches("#btn")) {
         index++;
-        posListener();
 
         // If the button also has the class "start"
         if (targ.target && targ.target.matches(".start")) {
@@ -72,15 +84,30 @@ container.addEventListener("click", function(targ) {
 
         // If the button also has the class "submit-btn"
         if (targ.target && targ.target.matches(".submit-btn")) {
+            event.preventDefault();
 
+            // Grabs user input value for initials
+            let initials = document.getElementById("initials").value;
+
+            if (initials === "") {
+                initialsDiv.textContent = "You have to enter your initials!";
+                index--;
+                return;
+            } else {
+
+                // The user's initials input and score is stored in local storage as a key value pair
+                localStorage.setItem(initials, score);
+                renderScores();
+            }
         }
 
 
         // // If the button also has the class "back"
         // if (targ.target && targ.target.matches(".back")) {
             
-        //     // Set time back to 60 seconds
+        //     // Set time back to 60 seconds and score back to 0
         //     time = 60;
+        //     score = 0;
 
         // }
 
@@ -89,8 +116,8 @@ container.addEventListener("click", function(targ) {
             
         // }
         
-
-        // // Correct variable counter
+        // Towards the end because I want other conditions to be met first
+        posListener();
     }
 });
 
