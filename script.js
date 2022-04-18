@@ -14,9 +14,9 @@ let score = 0;
 let index = 0;
 
 // Object that stores user initial and scores. Saved to and grabbed from local storage later.
-let scoreObject = {
-
-}
+let scores = {
+    TV: 0,
+};
 
 // Function that iterates over section nodeList and returns the current node the user is on.
 // The current node is always the index variable value and not the other way around
@@ -44,10 +44,29 @@ function posListener() {
 
 // Function that grabs scores from local storage and renders it to scoreboard
 function renderScores() {
-    let initials = localStorage.getItem("initials")
+    // Stringified scores object is parsed back into an object
+    let scoresStored = JSON.parse(localStorage.getItem("scores"));
 
+    // Check to see if initials is parsed and turned back into an object
+    // console.log(initials);
 
-}
+    // The scoresStored object keys and values are stored as an array respectively
+    initialKeys = Object.keys(scoresStored);
+    scoreValues = Object.values(scoresStored);
+
+    for (var i = 0; i < initialKeys.length; i++) {
+        // For every loop, since initialKeys.length and scoreValues.length is the same, we are able to pair the strings.
+        scorePair = initialKeys[i] + ": " + scoreValues[i].toString();
+
+        // We create an element, set element content to scorePair, and append it to the scoreboard div
+        let scorePara = document.createElement("p");
+        let scoreContent = document.createTextNode(scorePair);
+        scorePara.appendChild(scoreContent);
+        scoreboard.appendChild(scorePara);
+    }
+};
+
+renderScores();
 
 // Event delegation. Delegates click function for all buttons available. https://davidwalsh.name/event-delegate
 container.addEventListener("click", function(targ) {
@@ -80,7 +99,7 @@ container.addEventListener("click", function(targ) {
                     posListener();
                 }
             }, 10);
-        }
+        };
 
         // If the button also has the class "submit-btn"
         if (targ.target && targ.target.matches(".submit-btn")) {
@@ -91,15 +110,20 @@ container.addEventListener("click", function(targ) {
 
             if (initials === "") {
                 initialsDiv.textContent = "You have to enter your initials!";
+
+                // Counter the index++ in the beginning so the index stays the same if button is clicked
                 index--;
                 return;
             } else {
+                // The user's initials input and score are stored into the scores object
+                scores[initials] = score;
 
-                // The user's initials input and score is stored in local storage as a key value pair
-                localStorage.setItem(initials, score);
+                // The scores object is stored into the local storage as a string
+                localStorage.setItem(JSON.stringify(scores))
+
                 renderScores();
             }
-        }
+        };
 
 
         // // If the button also has the class "back"
