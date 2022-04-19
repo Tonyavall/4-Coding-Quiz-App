@@ -1,6 +1,10 @@
 # BC-HW-4
 Coding Quiz
 
+Deployed Site:
+https://tonyavall.github.io/BC-HW-4/
+![Getting Started](deployed.png)
+
 Logic Map:
 
 1. Coding Quiz Start Page 
