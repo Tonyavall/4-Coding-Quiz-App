@@ -16,7 +16,7 @@ Logic Map:
     b. display correct out of incorrect
 6. Go back and clear score button
 
-Approach: Html orriented. Could do javascript
+Approach: Html orriented. Could do javascript objects as questions.
 
 Concept Abstract: Default class 'hidden' has css property display: none; for quiz container. A position listener function grabs current index. Whatever index is not current index is given class hidden and the current index will have class hidden removed.
 
@@ -42,5 +42,3 @@ Project Notes:
     a. currentIndex(); grabs current node
     b. posListener(); associates index variable with node dataset attribute index value.
     c. If I want to change the index variable value I can then just use the posListener to change current node
-
-
