@@ -1,5 +1,5 @@
 # BC-HW-4
-Coding Quiz
+Coding Quiz Web App
 
 Deployed Site:
 https://tonyavall.github.io/BC-HW-4/
