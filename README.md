@@ -8,7 +8,7 @@ https://tonyavall.github.io/BC-HW-4/
 Stack:
 HTML, CSS, Javascript
 
-Logic Map:
+Logic Map: 
 
 1. Coding Quiz Start Page 
     a. On click 'start', timer starts -> question 1 

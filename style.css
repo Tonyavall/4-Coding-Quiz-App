@@ -7,6 +7,43 @@ body {
     background-color: #F9F9F9;
 }
 
+p {
+    margin: .25em;
+    padding: .25em;
+}
+
+h1 {
+    margin: 1em;
+}
+
+h2 {
+    font-size: .10em;
+    color: gray;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+}
+
+#timer {
+    background-color: #BEAEE2;
+    color: white;
+    font-size: 1.5em;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 2em;
+}
+
+/* .lastTen {
+    background-color: #BEAEE2;
+    color: red;
+    font-size: 1.5em;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 2em;
+} */
+
 #container {
     display: flex;
     justify-content: center;
@@ -24,44 +61,14 @@ section {
     width: 60vw;
 }
 
-section form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
 .hidden {
     display: none;
 }
 
-aside {
+section form {
     display: flex;
-    justify-content: center;
-}
-
-#timer {
-    background-color: #BEAEE2;
-    color: white;
-    font-size: 1.5em;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 2em;
-}
-
-.lastTen {
-    background-color: #BEAEE2;
-    color: red;
-    font-size: 1.5em;
-    margin: 1em;
-    padding: 1em;
-    border-radius: 2em;
-}
-
-#scoreboard {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    border-radius: 1em;
+    flex-direction: column;
 }
 
 #btn {
@@ -81,16 +88,9 @@ aside {
     box-shadow: #BEAEE2;
 }
 
-p {
-    margin: .25em;
-    padding: .25em;
-}
-
-h1 {
-    margin: 1em;
-}
-
-h2 {
-    font-size: .10em;
-    color: gray;
+#scoreboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1em;
 }
