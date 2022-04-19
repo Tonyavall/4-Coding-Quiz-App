@@ -46,3 +46,5 @@ Project Notes:
     a. currentIndex(); grabs current node
     b. posListener(); associates index variable with node dataset attribute index value.
     c. If I want to change the index variable value I can then just use the posListener to change current node
+
+2. For future reference: This project is not scalable. What I could do differently - More javascript orriented where the questions are stored as an array of objects. This allows me to have data for the correct answer that is a serverside request, making it hard to cheat. Allows for an easier randomization of questions and answers. Allows for a 'question bank' concept. Allows for custom questions and answers stored by the user, etc.
