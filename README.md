@@ -5,6 +5,9 @@ Deployed Site:
 https://tonyavall.github.io/BC-HW-4/
 ![Getting Started](deployed.png)
 
+Stack:
+HTML, CSS, Javascript
+
 Logic Map:
 
 1. Coding Quiz Start Page 
