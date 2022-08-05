@@ -1,4 +1,4 @@
-# BC-HW-4
+# Coding Quiz
 Coding Quiz Web App
 
 Deployed Site:
